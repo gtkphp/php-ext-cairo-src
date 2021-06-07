@@ -32,3 +32,12 @@ php -dextension=cairo.so -m | grep cairo
 php -dextension=cairo.so --rc cairo_t
 
 // TODO php.ini
+PATH=<php-preffix>/bin:$PATH
+TEST_PHP_ARGS=test -c /home/dev/Projects/gtkphp/php-ext-cairo-src/php-cairo.ini
+TRAVIS=1
+USE_ZEND_ALLOC=0
+ZEND_DONT_UNLOAD_MODULES=1
+
+make test
+
+// TEST_PHP_EXECUTABLE=sapi/cli/php

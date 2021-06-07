@@ -25,10 +25,12 @@ if test "$PHP_CAIRO" != "no"; then
   dnl PKG_CHECK_MODULES([LIBFOO], [foo])
   dnl PHP_EVAL_INCLINE($LIBFOO_CFLAGS)
   dnl PHP_EVAL_LIBLINE($LIBFOO_LIBS, TEST_SHARED_LIBADD)
+  PKG_CHECK_MODULES([CAIRO], [cairo >= 1.0.0])
+  PHP_EVAL_INCLINE($CAIRO_CFLAGS)
+  PHP_EVAL_LIBLINE($CAIRO_LIBS, CAIRO_SHARED_LIBADD)
 
   dnl If you need to check for a particular library version using PKG_CHECK_MODULES,
   dnl you can use comparison operators. For example:
-  PKG_CHECK_MODULES([cairo], [cairo >= 1.0.0])
   dnl PKG_CHECK_MODULES([LIBFOO], [foo < 3.4])
   dnl PKG_CHECK_MODULES([LIBFOO], [foo = 1.2.3])
 
@@ -124,4 +126,5 @@ if test "$PHP_CAIRO" != "no"; then
 
   PHP_NEW_EXTENSION(cairo, cairo.c $cairo_sources, $ext_shared)
   PHP_ADD_BUILD_DIR($ext_builddir/php_cairo, 1)
+  PHP_SUBST(CAIRO_SHARED_LIBADD)
 fi

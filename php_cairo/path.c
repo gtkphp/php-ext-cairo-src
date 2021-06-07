@@ -448,16 +448,16 @@ php_cairo_path_t_get_ptr(php_cairo_path_t *php_path){
             //zval *ret = std_hnd->read_property(value, &member_point, IS_OBJECT, &cache_slot, &rv);
             if (path_data->union_type==1/*PHP_CAIRO_PATH_DATA_T_HEADER*/) {
                 zval *zheader = &path_data->header;
-                ztype = std_hnd->read_property(zheader, &member_type, IS_LONG, NULL, NULL);
-                zlength = std_hnd->read_property(zheader, &member_length, IS_LONG, NULL, NULL);
+                ztype = std_hnd->read_property(zheader->value.obj, member_type_str, IS_LONG, NULL, NULL);
+                zlength = std_hnd->read_property(zheader->value.obj, member_length_str, IS_LONG, NULL, NULL);
                 type = ztype->value.lval;
                 length = zlength->value.lval;
                 count = 0;
             } else {
                 zval *zpoint;
                 zpoint = &path_data->point;
-                zx = std_hnd->read_property(zpoint, &member_x, IS_DOUBLE, NULL, NULL);
-                zy = std_hnd->read_property(zpoint, &member_y, IS_DOUBLE, NULL, NULL);
+                zx = std_hnd->read_property(zpoint->value.obj, member_x_str, IS_DOUBLE, NULL, NULL);
+                zy = std_hnd->read_property(zpoint->value.obj, member_y_str, IS_DOUBLE, NULL, NULL);
                 points[0+count][0] = zx->value.dval;
                 points[0+count][1] = zy->value.dval;
                 count++;
