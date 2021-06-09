@@ -1,0 +1,7 @@
+ARG_ENABLE('cairo', 'cairo support', 'no');
+
+if (PHP_CAIRO != 'no') {
+	AC_DEFINE('HAVE_CAIRO', 1, 'cairo support enabled');
+
+	EXTENSION('cairo', 'cairo.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+}
